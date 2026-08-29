@@ -1,0 +1,242 @@
+{%- liquid
+  assign extra_field = product.metafields.custom.extra_details
+  assign materials = product.metafields.custom.materials.value
+  assign lead_time = product.metafields.custom.lead_time.value
+  assign extra_images = product.media | slice: 1, 12
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding kg-product-details">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="kg-product-details__heading {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    {%- if extra_images.size > 0 -%}
+      <ul class="kg-product-details__gallery list-unstyled" role="list">
+        {%- for media in extra_images -%}
+          <li class="kg-product-details__shot{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {%- if media.media_type == 'image' -%}
+              {%- assign shot_alt = media.alt | default: product.title -%}
+              {{
+                media
+                | image_url: width: 1600
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '400, 600, 800, 1200, 1600',
+                  sizes: '(min-width: 990px) 45vw, 100vw',
+                  alt: shot_alt
+              }}
+            {%- else -%}
+              {{ media | media_tag: image_size: '1200x' }}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <div class="kg-product-details__grid">
+      <div class="kg-product-details__copy">
+        <p class="kg-product-details__kicker">About this piece</p>
+        <h3 class="h2">{{ product.title | escape }}</h3>
+        {%- if extra_field.value != blank -%}
+          <div class="rte">{{ extra_field | metafield_tag }}</div>
+        {%- elsif product.description != blank -%}
+          <div class="rte">{{ product.description }}</div>
+        {%- else -%}
+          <div class="rte">
+            <p>
+              Printed to order in the shop. Every piece is sliced, printed, finished, and packed here so it shows up ready to use or display.
+            </p>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="kg-product-details__specs">
+        <p class="kg-product-details__kicker">What’s included</p>
+        <ul class="kg-product-details__list list-unstyled">
+          <li>
+            <span>Materials</span>
+            <span>
+              {%- if materials != blank -%}
+                {{ materials | escape }}
+              {%- else -%}
+                High-grade PLA or PETG, chosen for the job
+              {%- endif -%}
+            </span>
+          </li>
+          <li>
+            <span>Lead time</span>
+            <span>
+              {%- if lead_time != blank -%}
+                {{ lead_time | escape }}
+              {%- else -%}
+                Made to order — typically a few days in the shop, then packed and shipped
+              {%- endif -%}
+            </span>
+          </li>
+          <li>
+            <span>Finish</span>
+            <span>Support removal, cleanup, and a check before it leaves the shop</span>
+          </li>
+          <li>
+            <span>Custom work</span>
+            <span>Need a name, logo, or different color? Send it through Contact.</span>
+          </li>
+        </ul>
+        <a class="button" href="{{ pages.contact.url | default: '/pages/contact' }}">Ask about this piece</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .kg-product-details__heading {
+    margin: 0 0 2.5rem;
+    text-align: center;
+  }
+
+  .kg-product-details__gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 0 0 3.5rem;
+  }
+
+  .kg-product-details__shot img,
+  .kg-product-details__shot video,
+  .kg-product-details__shot model-viewer {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    background: #ffffff;
+  }
+
+  .kg-product-details__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .kg-product-details__kicker {
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .kg-product-details__copy .h2 {
+    margin: 0 0 1.25rem;
+  }
+
+  .kg-product-details__list {
+    margin: 0 0 2rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.12);
+  }
+
+  .kg-product-details__list li {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.12);
+  }
+
+  .kg-product-details__list li span:first-child {
+    font-weight: 700;
+  }
+
+  @media screen and (min-width: 750px) {
+    .kg-product-details__gallery {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .kg-product-details__shot:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .kg-product-details__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 4rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product details",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Take a closer look"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product details"
+    }
+  ]
+}
+{% endschema %}
