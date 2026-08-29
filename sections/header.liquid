@@ -124,7 +124,7 @@
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper kg-header-wrap color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+  class="header-wrapper kg-header-wrap color-{{ section.settings.color_scheme }}{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -132,7 +132,6 @@
     assign product_label = section.settings.menu_product_label | default: 'Shop by Product'
     assign interest_label = section.settings.menu_interest_label | default: 'Shop by Interest'
     assign search_placeholder = section.settings.search_placeholder | default: 'Search for custom trophies'
-    assign more_label = section.settings.more_label | default: 'More'
 
     if settings.social_twitter_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_vimeo_link != blank or settings.social_tiktok_link != blank or settings.social_tumblr_link != blank or settings.social_snapchat_link != blank
       assign social_links = true
@@ -142,11 +141,11 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header kg-header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
-    <div class="kg-header__row kg-header__row--main page-width">
+  <header class="kg-site-header">
+    <div class="kg-site-header__bar page-width">
       {%- render 'header-drawer' -%}
 
-      <div class="kg-header__logo">
+      <div class="kg-site-header__logo">
         {%- if request.page_type == 'index' -%}
           <h1 class="header__heading">
         {%- endif -%}
@@ -179,16 +178,45 @@
         {%- endif -%}
       </div>
 
-      <nav class="kg-header__shop-nav" aria-label="{{ product_label | escape }}">
+      <nav class="kg-site-header__nav" aria-label="{{ 'sections.header.menu' | t }}">
         {% render 'kg-nav-dropdown', menu: section.settings.menu_product, label: product_label, id: 'product' %}
         {% render 'kg-nav-dropdown', menu: section.settings.menu_interest, label: interest_label, id: 'interest' %}
+        {%- if section.settings.menu != blank -%}
+          {%- for link in section.settings.menu.links -%}
+            {%- if link.links != blank -%}
+              <header-menu>
+                <details class="kg-drop">
+                  <summary>
+                    <span>{{ link.title | escape }}</span>
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </summary>
+                  <ul class="kg-drop__menu" role="list">
+                    {%- for childlink in link.links -%}
+                      <li>
+                        <a href="{{ childlink.url }}"{% if childlink.current %} aria-current="page"{% endif %}>
+                          {{ childlink.title | escape }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </details>
+              </header-menu>
+            {%- else -%}
+              <a
+                class="kg-site-header__nav-link"
+                href="{{ link.url }}"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{ link.title | escape }}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
       </nav>
 
-      <div class="kg-header__search-wrap">
-        {% render 'kg-header-search', input_id: 'kg-Search', placeholder: search_placeholder %}
-      </div>
-
-      <div class="kg-header__tools header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
+      <div class="kg-site-header__tools{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}">
         <div class="desktop-localization-wrapper">
           {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
             <localization-form class="small-hide medium-hide" data-prevent-hide>
@@ -213,37 +241,40 @@
           {%- endif -%}
         </div>
 
+        <div class="kg-site-header__search">
+          {% render 'kg-header-search', input_id: 'kg-Search', placeholder: search_placeholder %}
+        </div>
+
         {% render 'header-search', input_id: 'Search-In-Modal' %}
 
-        <header-menu>
-          <details class="kg-header__more">
-            <summary>
-              <span class="svg-wrapper">{{ 'icon-plus.svg' | inline_asset_content }}</span>
-              <span>{{ more_label | escape }}</span>
-            </summary>
-            <ul class="kg-header__more-menu" role="list">
-              {%- if shop.customer_accounts_enabled -%}
-                <li>
-                  <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
-                    {%- if customer -%}
-                      {{ 'customer.account_fallback' | t }}
-                    {%- else -%}
-                      {{ 'customer.log_in' | t }}
-                    {%- endif -%}
-                  </a>
-                </li>
-              {%- endif -%}
-              {%- if pages.about != empty -%}
-                <li><a href="{{ pages.about.url }}">{{ pages.about.title }}</a></li>
-              {%- endif -%}
-              {%- if pages.contact != empty -%}
-                <li><a href="{{ pages.contact.url }}">{{ pages.contact.title }}</a></li>
-              {%- else -%}
-                <li><a href="/pages/contact">Contact</a></li>
-              {%- endif -%}
-            </ul>
-          </details>
-        </header-menu>
+        {%- if shop.customer_accounts_enabled -%}
+          <a
+            href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+            class="header__icon header__icon--account link focus-inset small-hide"
+            rel="nofollow"
+          >
+            {%- if section.settings.enable_customer_avatar -%}
+              <account-icon>
+                {%- if customer and customer.has_avatar? -%}
+                  {{ customer | avatar }}
+                {%- else -%}
+                  <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                {%- endif -%}
+              </account-icon>
+            {%- else -%}
+              <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">
+              {%- liquid
+                if customer
+                  echo 'customer.account_fallback' | t
+                else
+                  echo 'customer.log_in' | t
+                endif
+              -%}
+            </span>
+          </a>
+        {%- endif -%}
 
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -252,7 +283,7 @@
           {%- endcase -%}
         {%- endfor -%}
 
-        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart kg-header__cart link focus-inset" id="cart-icon-bubble">
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart kg-site-header__cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
             <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
           {% else %}
@@ -270,42 +301,6 @@
         </a>
       </div>
     </div>
-
-    {%- if section.settings.menu != blank -%}
-      <nav class="kg-header__cats" aria-label="{{ 'sections.header.menu' | t }}">
-        <div class="page-width">
-          <ul class="kg-header__cats-list" role="list">
-            {%- for link in section.settings.menu.links -%}
-              <li>
-                {%- if link.links != blank -%}
-                  <header-menu>
-                    <details class="kg-drop kg-drop--cat">
-                      <summary>
-                        <span>{{ link.title | escape }}</span>
-                        {{- 'icon-caret.svg' | inline_asset_content -}}
-                      </summary>
-                      <ul class="kg-drop__menu" role="list">
-                        {%- for childlink in link.links -%}
-                          <li>
-                            <a href="{{ childlink.url }}"{% if childlink.current %} aria-current="page"{% endif %}>
-                              {{ childlink.title | escape }}
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </details>
-                  </header-menu>
-                {%- else -%}
-                  <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>
-                    {{ link.title | escape }}
-                  </a>
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      </nav>
-    {%- endif -%}
   </header>
 </{{ header_tag }}>
 
@@ -469,6 +464,75 @@
     }
   </script>
 {%- endif -%}
+
+{% stylesheet %}
+  .header-wrapper.kg-header-wrap {
+    background: #0b1f33 !important;
+    background-color: #0b1f33 !important;
+  }
+
+  .kg-site-header {
+    display: block;
+    width: 100%;
+    background: #0b1f33;
+    color: #fff;
+  }
+
+  .kg-site-header__bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.6rem;
+    min-height: 7.2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .kg-site-header__nav {
+    display: none;
+  }
+
+  .kg-site-header__nav-link,
+  .kg-site-header .kg-drop > summary {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+
+  .kg-site-header__cart {
+    background: #0d9b8f;
+    color: #fff;
+    border-radius: 999px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .kg-site-header header-drawer {
+      display: none;
+    }
+
+    .kg-site-header__logo {
+      grid-column: 1;
+    }
+
+    .kg-site-header__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      grid-column: 2;
+    }
+
+    .kg-site-header__search {
+      display: block;
+    }
+
+    .kg-site-header .header__search {
+      display: none !important;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
