@@ -1,11 +1,258 @@
 {
   "sections": {
-    "main": {
-      "type": "kinetic-about",
-      "settings": {}
+    "banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Kinetic Grid 3D",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Custom trophies, print-on-demand models, and parts made in the shop.",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": ["heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_bbqjf7bbqjf7bbqj.png",
+        "image_overlay_opacity": 20,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-5",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "The shop",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "A small shop built around prints that hold up.",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Kinetic Grid 3D is a one-shop additive manufacturing studio. I design, slice, print, and finish every piece here — custom awards for leagues and companies, and a growing catalog of tabletop, organizer, and mechanical prints made to order.</p>"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 64,
+        "padding_bottom": 28
+      }
+    },
+    "origin": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "How it started",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "It began with trophies people could actually keep.",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>I started printing because I wanted control over the details: fit, finish, color, and whether a piece still looked right after it left the build plate. Custom trophies for local leagues and companies came first — including work like the Beck Crane Company award and the Whatnot Fire the Chat trophies.</p><p>The catalog grew from that same standard. If it is in the shop, it is something I would put my name on.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "image": "shopify://shop_images/PXL_20231120_112452799.PORTRAIT.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "what_we_make": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "title": "Custom trophies and awards",
+            "text": "<p>End-to-end design for tournaments, corporate honors, and local leagues — including multi-color prints and engraved plaques.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "title": "Print-on-demand catalog",
+            "text": "<p>Tabletop essentials, organizers, and articulated collectibles printed to order in high-grade PLA and PETG.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "title": "Functional parts",
+            "text": "<p>Mechanical assemblies and prototypes printed with attention to tolerance, strength, and how the piece is actually used.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["column_1", "column_2", "column_3"],
+      "settings": {
+        "title": "What leaves the shop",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 60,
+        "padding_bottom": 44
+      }
+    },
+    "process": {
+      "type": "collapsible-content",
+      "blocks": {
+        "row_1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Design and slicing",
+            "icon": "ruler",
+            "row_content": "<p>Every model is checked for structure, layer quality, and material flow before it hits the printer. Geometry is adjusted when a part needs to be stronger, cleaner, or easier to assemble.</p>",
+            "page": ""
+          }
+        },
+        "row_2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Printing",
+            "icon": "lightning_bolt",
+            "row_content": "<p>Jobs run on enclosed, high-speed machines with calibrated temperatures and multi-material printing when a piece needs more than one color or finish.</p>",
+            "page": ""
+          }
+        },
+        "row_3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Finish and inspection",
+            "icon": "check_mark",
+            "row_content": "<p>Supports come off, surfaces get cleaned up, moving parts are checked, and each order is packed so it arrives ready to use or display.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": ["row_1", "row_2", "row_3"],
+      "settings": {
+        "caption": "The standard",
+        "heading": "How a print gets made",
+        "heading_size": "h1",
+        "heading_alignment": "left",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "image": "shopify://shop_images/PXL_20230907_205126760.jpg",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cta": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Have something you want made?",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Browse the catalog or send a custom trophy, award, or print request. If it can be printed well, it can be built here.</p>"
+          }
+        },
+        "buttons": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop all",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": true,
+            "button_label_2": "Contact",
+            "button_link_2": "shopify://pages/contact",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "buttons"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "main"
+    "banner",
+    "intro",
+    "origin",
+    "what_we_make",
+    "process",
+    "cta"
   ]
 }
