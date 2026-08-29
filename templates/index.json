@@ -15,41 +15,37 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Precision 3D manufacturing and bespoke award fabrication",
+            "heading": "Custom trophies built to show off the win",
             "heading_size": "h0"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "Multi-color prints, custom trophies, and made-to-order models from the shop.",
+            "text": "Printed in the shop. Multi-color awards, plaques, and made-to-order pieces.",
             "text_style": "subtitle"
           }
         },
         "buttons": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Explore 3D catalog",
-            "button_link_1": "shopify://collections/all",
+            "button_label_1": "Shop trophies",
+            "button_link_1": "shopify://collections/custom-trophies",
             "button_style_secondary_1": false,
-            "button_label_2": "Request custom quote",
+            "button_label_2": "Build a custom award",
             "button_link_2": "shopify://pages/contact",
             "button_style_secondary_2": true
           }
         }
       },
-      "block_order": [
-        "heading",
-        "text",
-        "buttons"
-      ],
+      "block_order": ["heading", "text", "buttons"],
       "settings": {
         "image": "shopify://shop_images/Gemini_Generated_Image_bbqjf7bbqjf7bbqj.png",
-        "image_overlay_opacity": 40,
+        "image_overlay_opacity": 50,
         "image_height": "large",
         "image_behavior": "ambient",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
         "show_text_box": false,
         "color_scheme": "scheme-5",
         "stack_images_on_mobile": false,
@@ -57,14 +53,83 @@
         "show_text_below": false
       }
     },
+    "trust": {
+      "type": "multicolumn",
+      "blocks": {
+        "shop": {
+          "type": "column",
+          "settings": {
+            "title": "Made in the shop",
+            "text": "<p>Designed, printed, and packed here.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "color": {
+          "type": "column",
+          "settings": {
+            "title": "Multi-color finish",
+            "text": "<p>AMS printing that comes off the plate in color.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "awards": {
+          "type": "column",
+          "settings": {
+            "title": "Custom awards",
+            "text": "<p>Trophies, plaques, and pieces for the occasion.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "turnaround": {
+          "type": "column",
+          "settings": {
+            "title": "Fast turnaround",
+            "text": "<p>Leagues and companies that need it on time.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["shop", "color", "awards", "turnaround"],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-2",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
     "categories": {
       "type": "multicolumn",
       "blocks": {
+        "trophies": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/PXL_20231120_112452799.PORTRAIT.jpg",
+            "title": "Custom trophies",
+            "text": "<p>Event plaques and multi-color awards.</p>",
+            "link_label": "Shop trophies",
+            "link": "shopify://collections/custom-trophies"
+          }
+        },
         "gaming": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_bbqjf7bbqjf7bbqj.png",
             "title": "Tabletop gaming",
-            "text": "<p>Dice towers, miniatures, and tabletop essentials printed to order.</p>",
+            "text": "<p>Dice towers, miniatures, and tabletop gear.</p>",
             "link_label": "Shop gaming",
             "link": "shopify://collections/all"
           }
@@ -72,70 +137,67 @@
         "home": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/PXL_20230907_205126760.jpg",
             "title": "Home and craft",
-            "text": "<p>Sewing trays, organizers, and studio tools built for everyday use.</p>",
+            "text": "<p>Trays, organizers, and studio tools.</p>",
             "link_label": "Shop home",
             "link": "shopify://collections/all"
           }
         },
-        "trophies": {
+        "custom": {
           "type": "column",
           "settings": {
-            "title": "Custom awards and trophies",
-            "text": "<p>Event plaques, multi-color trophies, and pieces designed for the occasion.</p>",
-            "link_label": "Shop trophies",
-            "link": "shopify://collections/custom-trophies"
+            "title": "Custom order",
+            "text": "<p>Send the design. We’ll print it right.</p>",
+            "link_label": "Start a custom order",
+            "link": "shopify://pages/contact"
           }
         }
       },
-      "block_order": [
-        "gaming",
-        "home",
-        "trophies"
-      ],
+      "block_order": ["trophies", "gaming", "home", "custom"],
       "settings": {
-        "title": "Shop by category",
+        "title": "Shop by product",
         "heading_size": "h1",
         "image_width": "full",
-        "image_ratio": "adapt",
+        "image_ratio": "circle",
         "button_label": "",
         "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "scheme-2",
-        "columns_mobile": "1",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 72,
-        "padding_bottom": 36
+        "padding_top": 48,
+        "padding_bottom": 28
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
         "collection": "custom-trophies",
-        "products_to_show": 8,
-        "title": "Custom trophies",
+        "products_to_show": 9,
+        "title": "Popular trophies",
         "heading_size": "h1",
-        "description": "<p>Awards and trophies printed to order from the shop.</p>",
+        "description": "<p>Printed to order from the shop.</p>",
         "show_description": true,
         "description_style": "subtitle",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "outline",
+        "view_all_style": "solid",
         "color_scheme": "scheme-2",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 52
+        "padding_top": 48,
+        "padding_bottom": 56
       }
     },
     "commissions": {
@@ -152,20 +214,20 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Need a custom trophy, tournament award, or tailored bulk production?",
+            "heading": "Need a trophy, tournament award, or a bulk run?",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Fast turnaround · Multi-color 3D printing · Precision laser engraving</p>"
+            "text": "<p>Fast turnaround · Multi-color printing · Precision engraving</p>"
           }
         },
         "button": {
           "type": "button",
           "settings": {
-            "button_label": "Submit design details",
+            "button_label": "Build your award",
             "button_link": "shopify://pages/contact",
             "button_style_secondary": false,
             "button_label_2": "",
@@ -174,72 +236,151 @@
           }
         }
       },
-      "block_order": [
-        "caption",
-        "heading",
-        "text",
-        "button"
-      ],
+      "block_order": ["caption", "heading", "text", "button"],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "scheme-5",
         "full_width": true,
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 72,
+        "padding_bottom": 72
       }
     },
-    "trust": {
-      "type": "multicolumn",
+    "story": {
+      "type": "image-with-text",
       "blocks": {
-        "turnaround": {
-          "type": "column",
+        "caption": {
+          "type": "caption",
           "settings": {
-            "title": "Fast turnaround",
-            "text": "<p>Jobs are sliced, printed, and packed in the shop — not sitting in a queue overseas.</p>",
-            "link_label": "",
-            "link": ""
+            "caption": "From the shop",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
           }
         },
-        "color": {
-          "type": "column",
+        "heading": {
+          "type": "heading",
           "settings": {
-            "title": "Multi-color finish",
-            "text": "<p>AMS multi-material printing for trophies and parts that come off the plate in color.</p>",
-            "link_label": "",
-            "link": ""
+            "heading": "Awards people actually want to keep",
+            "heading_size": "h1"
           }
         },
-        "shipping": {
-          "type": "column",
+        "text": {
+          "type": "text",
           "settings": {
-            "title": "Secure shipping",
-            "text": "<p>Every piece is inspected, packed, and sent so it arrives ready to use or display.</p>",
-            "link_label": "",
-            "link": ""
+            "text": "<p>Local leagues, companies, and one-off wins. Every trophy is designed, printed, and finished here so it still looks right when it leaves the box.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "See custom trophies",
+            "button_link": "shopify://collections/custom-trophies",
+            "button_style_secondary": false
           }
         }
       },
-      "block_order": [
-        "turnaround",
-        "color",
-        "shipping"
-      ],
+      "block_order": ["caption", "heading", "text", "button"],
       "settings": {
-        "title": "",
-        "heading_size": "h2",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
+        "image": "shopify://shop_images/PXL_20231120_112452799.PORTRAIT.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-3",
+        "color_scheme": "scheme-3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rings": {
+      "type": "image-with-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Made to order",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "If it can be printed well, it can be built here",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Send the idea, the logo, or the league name. We’ll slice it, print it, and pack it so it shows up ready to hand over.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Start a custom order",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text", "button"],
+      "settings": {
+        "image": "shopify://shop_images/PXL_20230907_205126760.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
         "color_scheme": "scheme-2",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 52,
-        "padding_bottom": 72
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "quote": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "★★★★★",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "large"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Built for the league, the shop, and the win.",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Custom trophies and awards printed to order — not pulled off a warehouse shelf.</p>"
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 64,
+        "padding_bottom": 64
       }
     },
     "1773435377fd042ca0": {
@@ -249,10 +390,13 @@
   },
   "order": [
     "image_banner",
+    "trust",
     "categories",
     "featured_collection",
     "commissions",
-    "trust",
+    "story",
+    "rings",
+    "quote",
     "1773435377fd042ca0"
   ]
 }
