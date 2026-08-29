@@ -1,1 +1,232 @@
-{"sections":{"image_banner":{"type":"image-banner","blocks":{"heading":{"type":"heading","settings":{"heading":"Where Precision Meets Imagination: Custom 3D Solutions for Gaming, Trophies, and Prototyping","heading_size":"h0"}},"button":{"type":"buttons","settings":{"button_label_1":"Shop all","button_link_1":"shopify:\/\/collections\/all","button_style_secondary_1":true,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading","button"],"settings":{"image":"shopify:\/\/shop_images\/Gemini_Generated_Image_bbqjf7bbqjf7bbqj.png","image_overlay_opacity":20,"image_height":"medium","image_behavior":"none","desktop_content_position":"bottom-center","desktop_content_alignment":"center","show_text_box":false,"color_scheme":"scheme-5","stack_images_on_mobile":false,"mobile_content_alignment":"center","show_text_below":false}},"featured_collection":{"type":"featured-collection","settings":{"collection":"all","products_to_show":8,"title":"Featured products","heading_size":"h2","description":"","show_description":false,"description_style":"body","columns_desktop":4,"enable_desktop_slider":false,"full_width":false,"show_view_all":true,"view_all_style":"solid","color_scheme":"scheme-1","image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","columns_mobile":"2","swipe_on_mobile":false,"padding_top":44,"padding_bottom":36}},"1773435377fd042ca0":{"type":"_blocks","settings":{}}},"order":["image_banner","featured_collection","1773435377fd042ca0"]}
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Precision 3D manufacturing and bespoke award fabrication",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Multi-color prints, custom trophies, and made-to-order models from the shop.",
+            "text_style": "subtitle"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Explore 3D catalog",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "Request custom quote",
+            "button_link_2": "shopify://pages/contact",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": ["heading", "text", "buttons"],
+      "settings": {
+        "image": "shopify://shop_images/Gemini_Generated_Image_bbqjf7bbqjf7bbqj.png",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "ambient",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-5",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "categories": {
+      "type": "multicolumn",
+      "blocks": {
+        "gaming": {
+          "type": "column",
+          "settings": {
+            "title": "Tabletop gaming",
+            "text": "<p>Dice towers, miniatures, and tabletop essentials printed to order.</p>",
+            "link_label": "Shop gaming",
+            "link": "shopify://collections/all"
+          }
+        },
+        "home": {
+          "type": "column",
+          "settings": {
+            "title": "Home and craft",
+            "text": "<p>Sewing trays, organizers, and studio tools built for everyday use.</p>",
+            "link_label": "Shop home",
+            "link": "shopify://collections/all"
+          }
+        },
+        "trophies": {
+          "type": "column",
+          "settings": {
+            "title": "Custom awards and trophies",
+            "text": "<p>Event plaques, multi-color trophies, and pieces designed for the occasion.</p>",
+            "link_label": "Start custom order",
+            "link": "shopify://pages/contact"
+          }
+        }
+      },
+      "block_order": ["gaming", "home", "trophies"],
+      "settings": {
+        "title": "Shop by category",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 72,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Made to order",
+        "heading_size": "h1",
+        "description": "<p>Bestsellers and new releases from the shop library, printed when you order.</p>",
+        "show_description": true,
+        "description_style": "subtitle",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 52
+      }
+    },
+    "commissions": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Custom work",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Need a custom trophy, tournament award, or tailored bulk production?",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Fast turnaround · Multi-color 3D printing · Precision laser engraving</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Submit design details",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": ["caption", "heading", "text", "button"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "trust": {
+      "type": "multicolumn",
+      "blocks": {
+        "turnaround": {
+          "type": "column",
+          "settings": {
+            "title": "Fast turnaround",
+            "text": "<p>Jobs are sliced, printed, and packed in the shop — not sitting in a queue overseas.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "color": {
+          "type": "column",
+          "settings": {
+            "title": "Multi-color finish",
+            "text": "<p>AMS multi-material printing for trophies and parts that come off the plate in color.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "shipping": {
+          "type": "column",
+          "settings": {
+            "title": "Secure shipping",
+            "text": "<p>Every piece is inspected, packed, and sent so it arrives ready to use or display.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["turnaround", "color", "shipping"],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 72
+      }
+    },
+    "1773435377fd042ca0": {
+      "type": "_blocks",
+      "settings": {}
+    }
+  },
+  "order": [
+    "image_banner",
+    "categories",
+    "featured_collection",
+    "commissions",
+    "trust",
+    "1773435377fd042ca0"
+  ]
+}
