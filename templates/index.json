@@ -83,8 +83,8 @@
           "settings": {
             "title": "Custom awards and trophies",
             "text": "<p>Event plaques, multi-color trophies, and pieces designed for the occasion.</p>",
-            "link_label": "Start custom order",
-            "link": "shopify://pages/contact"
+            "link_label": "Shop trophies",
+            "link": "shopify://collections/custom-trophies"
           }
         }
       },
@@ -103,7 +103,7 @@
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "primary",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 72,
@@ -115,9 +115,9 @@
       "settings": {
         "collection": "custom-trophies",
         "products_to_show": 8,
-        "title": "Made to order",
+        "title": "Custom trophies",
         "heading_size": "h1",
-        "description": "<p>Bestsellers and new releases from the shop library, printed when you order.</p>",
+        "description": "<p>Awards and trophies printed to order from the shop.</p>",
         "show_description": true,
         "description_style": "subtitle",
         "columns_desktop": 4,
@@ -125,7 +125,7 @@
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "outline",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -235,7 +235,7 @@
         "columns_desktop": 3,
         "column_alignment": "center",
         "background_style": "none",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 52,
