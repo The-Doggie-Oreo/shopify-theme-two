@@ -1,0 +1,772 @@
+{% doc %}
+  @prompt
+    Generate a Shopify Liquid and Tailwind CSS section for a 'Portfolio' page. The layout should be a Dynamic Masonry Collage Grid.
+    
+    The Requirements:
+    
+    Structure: A mix of large 'Hero' blocks and smaller 'Detail' blocks (at least 6-8 total slots).
+    
+    Hover Effects: When a user hovers over a block, a dark overlay should appear with a white description of the product and a 'View Details' link.
+    
+    Content Categories to Include: >    * Custom Trophies: High-detail awards for Esports and Corporate events.
+    
+    Gaming Products: Custom controller stands, headset mounts, and PC mods.
+    
+    Engineering Prototypes: Intricate mechanical parts and functional 3D designs.
+    
+    Styling: The grid should have 'gap-4' spacing, rounded corners (rounded-lg), and a subtle drop shadow. It must be fully responsive (stacks to 1 column on mobile, 3-4 columns on desktop).
+    
+    Visual Vibe: Clean, industrial, and high-tech. Use a 'Dark Mode' aesthetic with glassmorphism effects for the text overlays."
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-portfolio-masonry-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.section_padding }}px 0;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-portfolio-masonry__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .ai-portfolio-masonry__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .ai-portfolio-masonry__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ai-portfolio-masonry__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.desktop_columns }}, 1fr);
+    }
+  }
+
+  .ai-portfolio-masonry__item-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .ai-portfolio-masonry__item-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  }
+
+  .ai-portfolio-masonry__item--hero-{{ ai_gen_id }} {
+    grid-row: span 2;
+  }
+
+  .ai-portfolio-masonry__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: #1a1a1a;
+  }
+
+  .ai-portfolio-masonry__item--hero-{{ ai_gen_id }} .ai-portfolio-masonry__image-wrapper-{{ ai_gen_id }} {
+    padding-bottom: 200%;
+  }
+
+  .ai-portfolio-masonry__image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-portfolio-masonry__placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  }
+
+  .ai-portfolio-masonry__placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-portfolio-masonry__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, {{ block.settings.overlay_opacity }});
+    backdrop-filter: blur({{ block.settings.blur_amount }}px);
+    -webkit-backdrop-filter: blur({{ block.settings.blur_amount }}px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-portfolio-masonry__item-{{ ai_gen_id }}:hover .ai-portfolio-masonry__overlay-{{ ai_gen_id }} {
+    opacity: 1;
+  }
+
+  .ai-portfolio-masonry__category-{{ ai_gen_id }} {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: {{ block.settings.accent_color }};
+    margin-bottom: 8px;
+  }
+
+  .ai-portfolio-masonry__title-{{ ai_gen_id }} {
+    font-size: 20px;
+    font-weight: 700;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+  }
+
+  .ai-portfolio-masonry__description-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  .ai-portfolio-masonry__link-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: {{ block.settings.accent_color }};
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+
+  .ai-portfolio-masonry__link-{{ ai_gen_id }}:hover {
+    gap: 12px;
+  }
+
+  .ai-portfolio-masonry__link-icon-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    stroke: {{ block.settings.accent_color }};
+  }
+
+  .ai-portfolio-masonry__empty-state-{{ ai_gen_id }} {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.6;
+  }
+
+  .ai-portfolio-masonry__empty-state-{{ ai_gen_id }} p {
+    font-size: 16px;
+    margin: 0;
+  }
+{% endstyle %}
+
+<portfolio-masonry-{{ ai_gen_id }} class="ai-portfolio-masonry-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-portfolio-masonry__container-{{ ai_gen_id }}">
+    <div class="ai-portfolio-masonry__grid-{{ ai_gen_id }}">
+      {% liquid
+        assign has_content = false
+        for i in (1..8)
+          assign item_enabled_key = 'item_' | append: i | append: '_enabled'
+          if block.settings[item_enabled_key]
+            assign has_content = true
+            break
+          endif
+        endfor
+      %}
+
+      {% if has_content %}
+        {% for i in (1..8) %}
+          {% liquid
+            assign item_enabled_key = 'item_' | append: i | append: '_enabled'
+            assign item_hero_key = 'item_' | append: i | append: '_hero'
+            assign item_image_key = 'item_' | append: i | append: '_image'
+            assign item_category_key = 'item_' | append: i | append: '_category'
+            assign item_title_key = 'item_' | append: i | append: '_title'
+            assign item_description_key = 'item_' | append: i | append: '_description'
+            assign item_link_key = 'item_' | append: i | append: '_link'
+
+            assign item_enabled = block.settings[item_enabled_key]
+            assign item_hero = block.settings[item_hero_key]
+            assign item_image = block.settings[item_image_key]
+            assign item_category = block.settings[item_category_key]
+            assign item_title = block.settings[item_title_key]
+            assign item_description = block.settings[item_description_key]
+            assign item_link = block.settings[item_link_key]
+          %}
+
+          {% if item_enabled %}
+            <div class="ai-portfolio-masonry__item-{{ ai_gen_id }} {% if item_hero %}ai-portfolio-masonry__item--hero-{{ ai_gen_id }}{% endif %}">
+              <div class="ai-portfolio-masonry__image-wrapper-{{ ai_gen_id }}">
+                {% if item_image %}
+                  <img
+                    src="{{ item_image | image_url: width: 800 }}"
+                    alt="{{ item_title | escape }}"
+                    class="ai-portfolio-masonry__image-{{ ai_gen_id }}"
+                    loading="lazy"
+                    width="800"
+                    height="800"
+                  >
+                {% else %}
+                  <div class="ai-portfolio-masonry__placeholder-{{ ai_gen_id }}">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+
+                <div class="ai-portfolio-masonry__overlay-{{ ai_gen_id }}">
+                  {% if item_category != blank %}
+                    <div class="ai-portfolio-masonry__category-{{ ai_gen_id }}">{{ item_category }}</div>
+                  {% endif %}
+
+                  {% if item_title != blank %}
+                    <h3 class="ai-portfolio-masonry__title-{{ ai_gen_id }}">{{ item_title }}</h3>
+                  {% endif %}
+
+                  {% if item_description != blank %}
+                    <p class="ai-portfolio-masonry__description-{{ ai_gen_id }}">{{ item_description }}</p>
+                  {% endif %}
+
+                  {% if item_link != blank %}
+                    <a href="{{ item_link }}" class="ai-portfolio-masonry__link-{{ ai_gen_id }}">
+                      View details
+                      <svg class="ai-portfolio-masonry__link-icon-{{ ai_gen_id }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                      </svg>
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <div class="ai-portfolio-masonry__empty-state-{{ ai_gen_id }}">
+          <p>Enable portfolio items in the block settings to display your work</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</portfolio-masonry-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PortfolioMasonry{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('.ai-portfolio-masonry__item-{{ ai_gen_id }}');
+        this.setupAccessibility();
+      }
+
+      setupAccessibility() {
+        this.items.forEach((item) => {
+          item.setAttribute('tabindex', '0');
+          item.setAttribute('role', 'article');
+
+          item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              const link = item.querySelector('.ai-portfolio-masonry__link-{{ ai_gen_id }}');
+              if (link) {
+                link.click();
+              }
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('portfolio-masonry-{{ ai_gen_id }}', PortfolioMasonry{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Portfolio masonry grid",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 1000,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "select",
+      "id": "desktop_columns",
+      "label": "Desktop columns",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent",
+      "default": "#00d4ff"
+    },
+    {
+      "type": "header",
+      "content": "Overlay effect"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.9
+    },
+    {
+      "type": "range",
+      "id": "blur_amount",
+      "label": "Blur amount",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_1_enabled",
+      "label": "Enable item 1",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_1_hero",
+      "label": "Hero size",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_1_category",
+      "label": "Category",
+      "default": "Custom Trophies"
+    },
+    {
+      "type": "text",
+      "id": "item_1_title",
+      "label": "Title",
+      "default": "Esports Championship Trophy"
+    },
+    {
+      "type": "textarea",
+      "id": "item_1_description",
+      "label": "Description",
+      "default": "High-detail award for competitive gaming events"
+    },
+    {
+      "type": "url",
+      "id": "item_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_2_enabled",
+      "label": "Enable item 2",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_2_hero",
+      "label": "Hero size",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "item_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_2_category",
+      "label": "Category",
+      "default": "Gaming Products"
+    },
+    {
+      "type": "text",
+      "id": "item_2_title",
+      "label": "Title",
+      "default": "Custom Controller Stand"
+    },
+    {
+      "type": "textarea",
+      "id": "item_2_description",
+      "label": "Description",
+      "default": "Precision-engineered display for premium controllers"
+    },
+    {
+      "type": "url",
+      "id": "item_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_3_enabled",
+      "label": "Enable item 3",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_3_hero",
+      "label": "Hero size",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "item_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_3_category",
+      "label": "Category",
+      "default": "Engineering Prototypes"
+    },
+    {
+      "type": "text",
+      "id": "item_3_title",
+      "label": "Title",
+      "default": "Mechanical Gear Assembly"
+    },
+    {
+      "type": "textarea",
+      "id": "item_3_description",
+      "label": "Description",
+      "default": "Intricate functional prototype with moving parts"
+    },
+    {
+      "type": "url",
+      "id": "item_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_4_enabled",
+      "label": "Enable item 4",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_4_hero",
+      "label": "Hero size",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_4_category",
+      "label": "Category",
+      "default": "Custom Trophies"
+    },
+    {
+      "type": "text",
+      "id": "item_4_title",
+      "label": "Title",
+      "default": "Corporate Excellence Award"
+    },
+    {
+      "type": "textarea",
+      "id": "item_4_description",
+      "label": "Description",
+      "default": "Premium recognition piece for corporate achievements"
+    },
+    {
+      "type": "url",
+      "id": "item_4_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_5_enabled",
+      "label": "Enable item 5",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_5_hero",
+      "label": "Hero size",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "item_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_5_category",
+      "label": "Category",
+      "default": "Gaming Products"
+    },
+    {
+      "type": "text",
+      "id": "item_5_title",
+      "label": "Title",
+      "default": "Headset Mount Pro"
+    },
+    {
+      "type": "textarea",
+      "id": "item_5_description",
+      "label": "Description",
+      "default": "Wall-mounted solution for premium gaming headsets"
+    },
+    {
+      "type": "url",
+      "id": "item_5_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_6_enabled",
+      "label": "Enable item 6",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_6_hero",
+      "label": "Hero size",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "item_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_6_category",
+      "label": "Category",
+      "default": "Gaming Products"
+    },
+    {
+      "type": "text",
+      "id": "item_6_title",
+      "label": "Title",
+      "default": "PC Case Mod Kit"
+    },
+    {
+      "type": "textarea",
+      "id": "item_6_description",
+      "label": "Description",
+      "default": "Custom components for unique PC builds"
+    },
+    {
+      "type": "url",
+      "id": "item_6_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 7"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_7_enabled",
+      "label": "Enable item 7",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_7_hero",
+      "label": "Hero size",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "item_7_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_7_category",
+      "label": "Category",
+      "default": "Engineering Prototypes"
+    },
+    {
+      "type": "text",
+      "id": "item_7_title",
+      "label": "Title",
+      "default": "Precision Bracket System"
+    },
+    {
+      "type": "textarea",
+      "id": "item_7_description",
+      "label": "Description",
+      "default": "Industrial-grade mounting solution prototype"
+    },
+    {
+      "type": "url",
+      "id": "item_7_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 8"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_8_enabled",
+      "label": "Enable item 8",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_8_hero",
+      "label": "Hero size",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "item_8_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_8_category",
+      "label": "Category",
+      "default": "Engineering Prototypes"
+    },
+    {
+      "type": "text",
+      "id": "item_8_title",
+      "label": "Title",
+      "default": "Modular Joint Design"
+    },
+    {
+      "type": "textarea",
+      "id": "item_8_description",
+      "label": "Description",
+      "default": "Complex articulating mechanism for robotics"
+    },
+    {
+      "type": "url",
+      "id": "item_8_link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Portfolio masonry grid"
+    }
+  ]
+}
+{% endschema %}
