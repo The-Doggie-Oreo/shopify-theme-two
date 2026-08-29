@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "image_banner": {
@@ -29,7 +38,11 @@
           }
         }
       },
-      "block_order": ["heading", "text", "buttons"],
+      "block_order": [
+        "heading",
+        "text",
+        "buttons"
+      ],
       "settings": {
         "image": "shopify://shop_images/Gemini_Generated_Image_bbqjf7bbqjf7bbqj.png",
         "image_overlay_opacity": 40,
@@ -75,7 +88,11 @@
           }
         }
       },
-      "block_order": ["gaming", "home", "trophies"],
+      "block_order": [
+        "gaming",
+        "home",
+        "trophies"
+      ],
       "settings": {
         "title": "Shop by category",
         "heading_size": "h1",
@@ -96,7 +113,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "all",
+        "collection": "custom-trophies",
         "products_to_show": 8,
         "title": "Made to order",
         "heading_size": "h1",
@@ -157,7 +174,12 @@
           }
         }
       },
-      "block_order": ["caption", "heading", "text", "button"],
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -198,7 +220,11 @@
           }
         }
       },
-      "block_order": ["turnaround", "color", "shipping"],
+      "block_order": [
+        "turnaround",
+        "color",
+        "shipping"
+      ],
       "settings": {
         "title": "",
         "heading_size": "h2",
