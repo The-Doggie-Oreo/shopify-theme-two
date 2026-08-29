@@ -19,8 +19,25 @@
     <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
+          {%- liquid
+            assign kg_product_label = section.settings.menu_product_label | default: 'Shop by Product'
+            assign kg_interest_label = section.settings.menu_interest_label | default: 'Shop by Interest'
+          -%}
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- render 'kg-drawer-dropdown',
+                menu: section.settings.menu_product,
+                label: kg_product_label,
+                id: 'product',
+                fallback: 'product'
+              -%}
+              {%- render 'kg-drawer-dropdown',
+                menu: section.settings.menu_interest,
+                label: kg_interest_label,
+                id: 'interest',
+                fallback: 'interest'
+              -%}
+              {%- if section.settings.menu != blank -%}
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
@@ -133,6 +150,7 @@
                   {%- endif -%}
                 </li>
               {%- endfor -%}
+              {%- endif -%}
             </ul>
           </nav>
           <div class="menu-drawer__utility-links">

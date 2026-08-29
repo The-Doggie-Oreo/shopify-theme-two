@@ -1,0 +1,29 @@
+{% doc %}
+Icon for the announcement trust bar.
+@param {string} [icon] - Icon key from announcement block settings
+@example
+{% render 'kg-trust-icon', icon: block.settings.icon %}
+{% enddoc %}
+
+{%- if icon != blank and icon != 'none' -%}
+  <span class="kg-trust-bar__icon" aria-hidden="true">
+    {%- case icon -%}
+      {%- when 'truck' -%}
+        {{ 'icon-truck.svg' | inline_asset_content }}
+      {%- when 'lightning' -%}
+        {{ 'icon-lightning-bolt.svg' | inline_asset_content }}
+      {%- when 'star' -%}
+        {{ 'icon-star.svg' | inline_asset_content }}
+      {%- when 'box' -%}
+        {{ 'icon-box.svg' | inline_asset_content }}
+      {%- when 'stopwatch' -%}
+        {{ 'icon-stopwatch.svg' | inline_asset_content }}
+      {%- when 'model' -%}
+        {{ 'icon-3d-model.svg' | inline_asset_content }}
+      {%- when 'tick' -%}
+        {{ 'icon-tick.svg' | inline_asset_content }}
+      {%- else -%}
+        {{ 'icon-checkmark.svg' | inline_asset_content }}
+    {%- endcase -%}
+  </span>
+{%- endif -%}

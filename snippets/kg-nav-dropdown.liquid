@@ -1,0 +1,48 @@
+{% doc %}
+Desktop header dropdown menu.
+@param {object} menu - Linklist
+@param {string} label - Visible label
+@param {string} id - Unique id prefix
+@example
+{% render 'kg-nav-dropdown', menu: section.settings.menu_product, label: 'Shop by Product', id: 'product' %}
+{% enddoc %}
+
+{%- if menu != blank and menu.links.size > 0 -%}
+  <header-menu>
+    <details class="kg-drop" id="Details-KgDrop-{{ id }}">
+      <summary>
+        <span>{{ label | escape }}</span>
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </summary>
+      <ul class="kg-drop__menu" role="list">
+        {%- for link in menu.links -%}
+          <li>
+            <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>
+              {{ link.title | escape }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </details>
+  </header-menu>
+{%- else -%}
+  <header-menu>
+    <details class="kg-drop" id="Details-KgDrop-{{ id }}">
+      <summary>
+        <span>{{ label | escape }}</span>
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </summary>
+      <ul class="kg-drop__menu" role="list">
+        {%- if id == 'interest' -%}
+          <li><a href="{{ routes.all_products_collection_url }}">Tabletop gaming</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}">Home and craft</a></li>
+          <li><a href="/collections/custom-trophies">Awards and leagues</a></li>
+        {%- else -%}
+          <li><a href="/collections/custom-trophies">Custom trophies</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}">All products</a></li>
+          <li><a href="/pages/contact">Custom order</a></li>
+        {%- endif -%}
+      </ul>
+    </details>
+  </header-menu>
+{%- endif -%}

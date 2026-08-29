@@ -1,5 +1,4 @@
-{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'kg-header.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign social_icons = true
@@ -12,15 +11,44 @@
   if section.blocks.size > 0
     assign announcement_bar = true
   endif
+  assign show_trust_row = false
+  if section.settings.show_all_items and section.blocks.size > 0
+    assign show_trust_row = true
+  endif
 -%}
 
 {% if social_icons %}
   {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 {% endif %}
 
+{%- unless show_trust_row -%}
+  {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
 <div
   class="utility-bar color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
 >
+  {%- if show_trust_row -%}
+    <div
+      class="kg-trust-bar page-width"
+      role="region"
+      aria-label="{{ 'sections.header.announcement' | t }}"
+    >
+      {%- for block in section.blocks -%}
+        <div class="kg-trust-bar__item" {{ block.shopify_attributes }}>
+          {%- render 'kg-trust-icon', icon: block.settings.icon -%}
+          {%- if block.settings.text != blank -%}
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}">{{ block.settings.text | escape }}</a>
+            {%- else -%}
+              <span>{{ block.settings.text | escape }}</span>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
   <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
     {%- if section.settings.show_social and social_icons -%}
       {%- render 'social-icons' -%}
@@ -160,6 +188,7 @@
       {%- endif -%}
     </div>
   </div>
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -192,7 +221,13 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
-    },  
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all_items",
+      "label": "Show all items in a row",
+      "default": true
+    },
     {
       "type": "checkbox",
       "id": "show_line_separator",
@@ -244,6 +279,23 @@
           "type": "url",
           "id": "link",
           "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "check", "label": "Check" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "lightning", "label": "Lightning" },
+            { "value": "star", "label": "Star" },
+            { "value": "box", "label": "Box" },
+            { "value": "stopwatch", "label": "Stopwatch" },
+            { "value": "model", "label": "3D model" },
+            { "value": "tick", "label": "Tick" }
+          ],
+          "default": "check"
         }
       ]
     }

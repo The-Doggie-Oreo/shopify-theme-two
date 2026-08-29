@@ -1,0 +1,77 @@
+{% doc %}
+Mobile drawer dropdown for a header menu.
+@param {object} [menu] - Linklist
+@param {string} label - Visible label
+@param {string} id - Unique id
+@param {string} [fallback] - product or interest
+@example
+{% render 'kg-drawer-dropdown', menu: section.settings.menu_product, label: 'Shop by Product', id: 'product', fallback: 'product' %}
+{% enddoc %}
+
+<li>
+  <details id="Details-menu-drawer-kg-{{ id }}">
+    <summary
+      id="HeaderDrawer-kg-{{ id }}"
+      class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+    >
+      {{ label | escape }}
+      <span class="svg-wrapper">
+        {{- 'icon-arrow.svg' | inline_asset_content -}}
+      </span>
+      <span class="svg-wrapper">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div
+      id="link-kg-{{ id }}"
+      class="menu-drawer__submenu has-submenu gradient motion-reduce"
+      tabindex="-1"
+    >
+      <div class="menu-drawer__inner-submenu">
+        <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+          <span class="svg-wrapper">
+            {{- 'icon-arrow.svg' | inline_asset_content -}}
+          </span>
+          {{ label | escape }}
+        </button>
+        <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+          {%- if menu != blank and menu.links.size > 0 -%}
+            {%- for link in menu.links -%}
+              <li>
+                <a
+                  href="{{ link.url }}"
+                  class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                  {% if link.current %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {%- endfor -%}
+          {%- elsif fallback == 'interest' -%}
+            <li>
+              <a href="{{ routes.all_products_collection_url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Tabletop gaming</a>
+            </li>
+            <li>
+              <a href="{{ routes.all_products_collection_url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Home and craft</a>
+            </li>
+            <li>
+              <a href="/collections/custom-trophies" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Awards and leagues</a>
+            </li>
+          {%- else -%}
+            <li>
+              <a href="/collections/custom-trophies" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Custom trophies</a>
+            </li>
+            <li>
+              <a href="{{ routes.all_products_collection_url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">All products</a>
+            </li>
+            <li>
+              <a href="/pages/contact" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">Custom order</a>
+            </li>
+          {%- endif -%}
+        </ul>
+      </div>
+    </div>
+  </details>
+</li>
